@@ -1,5 +1,5 @@
 report_mail:
-  mail_to: dev-team <dev@theplant.jp>
+  mail_to: dev-team <michael@theplant.jp>
   mail_from: dev2-monitor <monitor@theplant.jp>
 
 monitors:
