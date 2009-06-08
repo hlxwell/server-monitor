@@ -1,9 +1,3 @@
-== server_monitor
-
-Config the config file at lib/config/monitor_config.yml, then use it.
-
-config format like below:
-
 report_mail:
   mail_to: dev-team <michael@theplant.jp>
   mail_from: dev2-monitor <monitor@theplant.jp>
