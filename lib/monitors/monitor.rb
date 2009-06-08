@@ -3,10 +3,10 @@ require 'yaml'
 
 class Monitor
 
-  def initialize(config_name)
+  def initialize(config_file)
     @report_title = ""
     @report_body = []
-    @config = YAML.load_file(File.expand_path(File.dirname(__FILE__) + "../../../config/monitor_config_#{config_name}.yml"))
+    @config = YAML.load_file(File.expand_path(File.dirname(__FILE__) + "../../../config/#{config_file}"))
     @monitor_config = @config["monitors"][self.class.name]
   end
 

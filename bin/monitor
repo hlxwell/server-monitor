@@ -4,14 +4,22 @@
 end
 
 if !ARGV[0].nil? and ['dev1','dev2','dev3','piqshare'].include?(ARGV[0])
-  monitors = [DiskfullMonitor, BackupMonitor]
-  if ARGV[1] and monitors.collect{|m| m.name}.include?(ARGV[1])
-    monitors.each do |monitor|
-      monitor.new(ARGV[0]).check if monitor.name == ARGV[1]
-    end
-  else
-    puts "NO monitor match!"
+  config_file = "monitor_config_#{ARGV[0]}.yml"
+else
+  puts 'Select test config file!'
+  config_file = "monitor_config_test.yml"
+end
+
+monitors = [DiskfullMonitor, BackupMonitor]
+
+if ARGV[1] and monitors.collect{|m| m.name}.include?(ARGV[1])
+  puts "Execute #{ARGV[1]}!"
+  monitors.each do |monitor|
+    monitor.new(config_file).check if monitor.name == ARGV[1]
   end
 else
-  puts 'please add right parameters to server-monitor!'
+  puts "Execute all configured monitor!"
+  monitors.each do |monitor|
+    monitor.new(config_file).check
+  end
 end
