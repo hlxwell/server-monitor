@@ -1,4 +1,11 @@
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
+#!/usr/bin/env ruby
+require 'monitors/monitor'
+require 'monitors/diskfull_monitor'
+require 'monitors/backup_monitor'
 
-puts "Hello World"
+monitors = [DiskfullMonitor, BackupMonitor]
+
+
+monitors.each do |monitor|
+  monitor.new.check
+end

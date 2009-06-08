@@ -1,0 +1,11 @@
+report_mail:
+  mail_to: dev-team <michael@theplant.jp>
+  mail_from: dev2-monitor <monitor@theplant.jp>
+
+monitors:
+  diskfull:
+    disks: /dev/disk0s2,/dev/disk0s3
+    threshold: 50
+
+  database_backup:
+    dir: /Users/hlxwell
