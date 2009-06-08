@@ -13,9 +13,6 @@ class DiskfullMonitor < Monitor
     disks = `df -P|awk '{print $1}'`.split("\n")
     spaces = `df -P|awk '{print $5}'`.split("\n")
 
-    report = `df -h`
-    disk_remaining = report[/sda\w+\s+\d+?.?\dG\s+\d+?.?\dG\s+(\d+.?\d+?G)/,1]
-
     # generate report form from disk space info
     @report_title = "LOW disk space alarm ( the threshold is #{threshold}% for used space )"
     disks.each_with_index do |disk, i|
