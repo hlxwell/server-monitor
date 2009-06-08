@@ -5,7 +5,7 @@ end
 
 if !ARGV[0].nil? and ['dev1','dev2','dev3','piqshare'].include?(ARGV[0])
   monitors = [DiskfullMonitor, BackupMonitor]
-  if ARGV[1] and monitors.collect(&:name).include?(ARGV[1])
+  if ARGV[1] and monitors.collect{|m| m.name}.include?(ARGV[1])
     monitors.each do |monitor|
       monitor.new(ARGV[0]).check if monitor.name == ARGV[1]
     end
