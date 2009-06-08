@@ -3,9 +3,10 @@ report_mail:
   mail_from: dev2-monitor <monitor@theplant.jp>
 
 monitors:
-  diskfull:
+  DiskfullMonitor:
     disks: /dev/disk0s2,/dev/disk0s3
     threshold: 50
 
-  database_backup:
+  BackupMonitor:
     dir: /Users/hlxwell
+    period: 4

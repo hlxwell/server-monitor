@@ -2,10 +2,13 @@ class BackupMonitor < Monitor
   
   def check
     # check config
-    return if @monitor_config["database_backup"].nil? or @monitor_config["database_backup"]["dir"].nil?
+    return if @monitor_config.nil? or @monitor_config["dir"].nil? or @monitor_config["period"].nil?
+
+    # check time
+    return if Time.now.hour != @monitor_config["period"].to_i
 
     # load configs
-    backup_dir = @monitor_config["database_backup"]["dir"]
+    backup_dir = @monitor_config["dir"]
 
     # check database backup file
     timestamp = Time.now.strftime("%Y%m%d")

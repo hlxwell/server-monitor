@@ -5,7 +5,7 @@ class Monitor
     @report_title = ""
     @report_body = []
     @config = YAML.load_file(File.expand_path(File.dirname(__FILE__) + '../../../config/monitor_config.yml'))
-    @monitor_config = @config["monitors"]
+    @monitor_config = @config["monitors"][self.class.name]
   end
 
   def check
