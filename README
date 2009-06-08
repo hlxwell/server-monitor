@@ -17,4 +17,6 @@ monitors:
 
 
 2.Add crontab task
-30 3 * * * /home/asics/server-monitor/lib/main.rb
+there is two monitors: BackupMonitor, DiskfullMonitor
+30 3 * * * /home/asics/server-monitor/bin/monitor dev2 BackupMonitor
+*/30 * * * * /home/asics/server-monitor/bin/monitor dev2 DiskfullMonitor

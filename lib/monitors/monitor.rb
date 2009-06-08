@@ -1,10 +1,12 @@
+require File.expand_path(File.dirname(__FILE__) + '/../simplemail/simplemail')
 require 'yaml'
+
 class Monitor
 
-  def initialize
+  def initialize(config_name)
     @report_title = ""
     @report_body = []
-    @config = YAML.load_file(File.expand_path(File.dirname(__FILE__) + '../../../config/monitor_config.yml'))
+    @config = YAML.load_file(File.expand_path(File.dirname(__FILE__) + "../../../config/monitor_config_#{config_name}.yml"))
     @monitor_config = @config["monitors"][self.class.name]
   end
 

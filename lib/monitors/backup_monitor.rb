@@ -1,11 +1,10 @@
+require File.expand_path(File.dirname(__FILE__) + '/monitor')
+
 class BackupMonitor < Monitor
   
   def check
     # check config
-    return if @monitor_config.nil? or @monitor_config["dir"].nil? or @monitor_config["period"].nil?
-
-    # check time
-    return if Time.now.hour != @monitor_config["period"].to_i
+    return if @monitor_config.nil? or @monitor_config["dir"].nil?
 
     # load configs
     backup_dir = @monitor_config["dir"]

@@ -4,9 +4,8 @@ report_mail:
 
 monitors:
   DiskfullMonitor:
-    disks: /dev/disk0s2,/dev/disk0s3
-    threshold: 50
+    disks: /dev/mapper/VolGroup00-LogVol00
+    threshold: 80
 
   BackupMonitor:
-    dir: /Users/hlxwell
-    period: 4
+    dir: /home/asics/backups

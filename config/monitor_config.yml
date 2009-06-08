@@ -9,4 +9,3 @@ monitors:
 
   BackupMonitor:
     dir: /Users/hlxwell
-    period: 4

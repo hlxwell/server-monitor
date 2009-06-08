@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+['monitors/diskfull_monitor', 'monitors/backup_monitor'].each do |file|
+  require File.expand_path(File.dirname(__FILE__) + '/../lib/' + file)
+end
+
+if !ARGV[0].nil? and ['dev1','dev2','dev3','piqshare'].include?(ARGV[0])
+  monitors = [DiskfullMonitor, BackupMonitor]
+  if ARGV[1] and monitors.collect(&:name).include?(ARGV[1])
+    monitors.each do |monitor|
+      monitor.new(ARGV[0]).check if monitor.name == ARGV[1]
+    end
+  else
+    puts "NO monitor match!"
+  end
+else
+  puts 'please add right parameters to server-monitor!'
+end
