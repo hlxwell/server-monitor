@@ -1,7 +1,6 @@
 == server_monitor
 
-Config the config file at lib/config/monitor_config.yml, then use it.
-
+1.Config the config file at lib/config/monitor_config.yml, then use it.
 config format like below:
 
 report_mail:
@@ -15,3 +14,7 @@ monitors:
 
   database_backup:
     dir: /Users/hlxwell
+
+
+2.Add crontab task
+30 3 * * * /home/asics/server-monitor/lib/main.rb

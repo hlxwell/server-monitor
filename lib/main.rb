@@ -1,11 +1,9 @@
 #!/usr/bin/env ruby
-require 'monitors/monitor'
-require 'monitors/diskfull_monitor'
-require 'monitors/backup_monitor'
+['simplemail/simplemail', 'monitors/monitor', 'monitors/diskfull_monitor', 'monitors/backup_monitor'].each do |file|
+  require File.expand_path(File.dirname(__FILE__) + '/' + file)
+end
 
 monitors = [DiskfullMonitor, BackupMonitor]
-
-
 monitors.each do |monitor|
   monitor.new.check
 end
