@@ -19,12 +19,14 @@ class DiskfullMonitor < Monitor
     end
 
     # generate report form from disk space info
-    @report_title = "LOW disk space alarm ( the threshold is #{threshold}% for used space )"
+    @report_title = "#{`hostname`}: LOW disk space alarm!"
     disks.each_with_index do |disk, i|
       if disks_to_be_checked.include?(disk) and spaces[i].gsub('%','').to_i > threshold
         @report_body << "Disk:'#{disk}' used #{spaces[i]} space. <br>"
       end
     end
+    
+    @report_body << "<br>( the threshold is #{threshold}% for used space )" if @report_body.size > 0
   end
   
 end

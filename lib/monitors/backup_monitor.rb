@@ -15,7 +15,7 @@ class BackupMonitor < Monitor
 
     # generate report
     if files.size == 0
-      @report_title = "No database backup alarm"
+      @report_title = "#{`hostname`} No database backup alarm"
       @report_body << "There is no database backup file found:'#{backup_dir}/*#{timestamp}*.tar.gz'"
     end
   end
