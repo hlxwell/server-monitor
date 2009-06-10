@@ -10,6 +10,13 @@ class Monitor
     @monitor_config = @config["monitors"][self.class.name]
   end
 
+  def start
+    check
+    report
+  end
+  
+  protected
+  
   def check
     raise "not implement yet!"
   end

@@ -20,8 +20,6 @@ class DiskfullMonitor < Monitor
         @report_body << "Disk:'#{disk}' used #{spaces[i]} space. <br>"
       end
     end
-
-    report
   end
   
 end

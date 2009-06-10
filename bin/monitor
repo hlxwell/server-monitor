@@ -15,11 +15,11 @@ monitors = [DiskfullMonitor, BackupMonitor]
 if ARGV[1] and monitors.collect{|m| m.name}.include?(ARGV[1])
   puts "Execute #{ARGV[1]}!"
   monitors.each do |monitor|
-    monitor.new(config_file).check if monitor.name == ARGV[1]
+    monitor.new(config_file).start if monitor.name == ARGV[1]
   end
 else
   puts "Execute all configured monitor!"
   monitors.each do |monitor|
-    monitor.new(config_file).check
+    monitor.new(config_file).start
   end
 end

@@ -18,8 +18,6 @@ class BackupMonitor < Monitor
       @report_title = "No database backup alarm"
       @report_body << "There is no database backup file found:'#{backup_dir}/*#{timestamp}*.tar.gz'"
     end
-
-    report
   end
 
 end

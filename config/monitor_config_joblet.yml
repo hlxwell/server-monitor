@@ -1,0 +1,11 @@
+report_mail:
+  mail_to: dev-team <dev@theplant.jp> felix <felix@theplant.jp> michael <michael@theplant.jp>
+  mail_from: dev3-monitor <monitor@theplant.jp>
+
+monitors:
+  DiskfullMonitor:
+    disks: /dev/mapper/VolGroup00-LogVol00
+    threshold: 80
+
+  BackupMonitor:
+    dir: /home/asics/backups
