@@ -10,8 +10,13 @@ class DiskfullMonitor < Monitor
     disks_to_be_checked = @monitor_config["disks"]
 
     # get disk space info
-    disks = `df -P|awk '{print $1}'`.split("\n")
-    spaces = `df -P|awk '{print $5}'`.split("\n")
+    if RUBY_PLATFORM =~ /solaris/
+      disks = `df -h|awk '{print $1}'`.split("\n")
+      spaces = `df -h|awk '{print $5}'`.split("\n")
+    else
+      disks = `df -P|awk '{print $1}'`.split("\n")
+      spaces = `df -P|awk '{print $5}'`.split("\n")
+    end
 
     # generate report form from disk space info
     @report_title = "LOW disk space alarm ( the threshold is #{threshold}% for used space )"

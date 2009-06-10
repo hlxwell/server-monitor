@@ -15,8 +15,7 @@ class Monitor
     report
   end
   
-  protected
-  
+protected
   def check
     raise "not implement yet!"
   end

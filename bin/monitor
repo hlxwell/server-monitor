@@ -3,10 +3,15 @@
   require File.expand_path(File.dirname(__FILE__) + '/../lib/' + file)
 end
 
-if !ARGV[0].nil? and ['dev1','dev2','dev3','piqshare'].include?(ARGV[0])
+# find file at config dir, if can't find it, use the "monitor_config_test.yml"
+begin
+  raise if ARGV[0].nil?
   config_file = "monitor_config_#{ARGV[0]}.yml"
-else
-  puts 'Select test config file!'
+  
+  f = File.expand_path(File.dirname(__FILE__) + '/../config/' + config_file)
+  raise unless FileTest.exist?(f)
+rescue
+  puts '### Select the default config file: monitor_config_test.yml! ###'
   config_file = "monitor_config_test.yml"
 end
 
@@ -18,7 +23,7 @@ if ARGV[1] and monitors.collect{|m| m.name}.include?(ARGV[1])
     monitor.new(config_file).start if monitor.name == ARGV[1]
   end
 else
-  puts "Execute all configured monitor!"
+  puts "### Execute all configured monitor! ###"
   monitors.each do |monitor|
     monitor.new(config_file).start
   end
