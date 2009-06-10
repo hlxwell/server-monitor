@@ -5,7 +5,7 @@ report_mail:
 monitors:
   DiskfullMonitor:
     disks: /dev/mapper/VolGroup00-LogVol00
-    threshold: 90
+    threshold: 85
 
   BackupMonitor:
     dir: /home/asics/backups

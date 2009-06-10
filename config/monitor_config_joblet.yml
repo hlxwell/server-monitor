@@ -5,4 +5,4 @@ report_mail:
 monitors:
   DiskfullMonitor:
     disks: /
-    threshold: 90
+    threshold: 85

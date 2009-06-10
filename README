@@ -20,3 +20,6 @@ monitors:
 there is two monitors: BackupMonitor, DiskfullMonitor
 30 3 * * * /home/asics/server-monitor/bin/monitor dev2 BackupMonitor
 */30 * * * * /home/asics/server-monitor/bin/monitor dev2 DiskfullMonitor
+
+this is for joblet
+0,30 * * * * /home/joblet.jp/server-monitor/bin/monitor joblet DiskfullMonitor
