@@ -1,30 +1,23 @@
 #!/usr/bin/env ruby
+
+# require all lib file
 ['monitors/diskfull_monitor', 'monitors/backup_monitor'].each do |file|
   require File.expand_path(File.dirname(__FILE__) + '/../lib/' + file)
 end
 
-# find file at config dir, if can't find it, use the "monitor_config_test.yml"
-begin
-  raise if ARGV[0].nil?
-  config_file = "monitor_config_#{ARGV[0]}.yml"
-  
-  f = File.expand_path(File.dirname(__FILE__) + '/../config/' + config_file)
-  raise unless FileTest.exist?(f)
-rescue
-  puts '### Select the default config file: monitor_config_test.yml! ###'
-  config_file = "monitor_config_test.yml"
-end
+server_name  = ARGV[0]
+monitor_name = ARGV[1]
+monitors     = [DiskfullMonitor, BackupMonitor]
 
-monitors = [DiskfullMonitor, BackupMonitor]
-
-if ARGV[1] and monitors.collect{|m| m.name}.include?(ARGV[1])
-  puts "Execute #{ARGV[1]}!"
+# check if user specified the monitor, if not, execute all monitors
+if monitor_name and monitors.collect{|m| m.name}.include?(monitor_name)
+  puts "Execute #{monitor_name}!"
   monitors.each do |monitor|
-    monitor.new(config_file).start if monitor.name == ARGV[1]
+    monitor.new(server_name).start if monitor.name == monitor_name
   end
 else
   puts "### Execute all configured monitor! ###"
   monitors.each do |monitor|
-    monitor.new(config_file).start
+    monitor.new(server_name).start
   end
 end

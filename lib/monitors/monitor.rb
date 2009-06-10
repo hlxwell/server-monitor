@@ -3,7 +3,17 @@ require 'yaml'
 
 class Monitor
 
-  def initialize(config_file)
+  def initialize(server_name)
+    # find file at config dir, if can't find it, use the "monitor_config_test.yml"
+    begin
+      raise if server_name.nil?    # not specify any server name
+      config_file = "monitor_config_#{server_name}.yml"
+      raise unless FileTest.exist?(File.expand_path(File.dirname(__FILE__) + '../../../config/' + config_file))  # file not exit
+    rescue
+      puts '### use test.yml as default ###'
+      config_file = "monitor_config_test.yml"
+    end
+    
     @report_title = ""
     @report_body = []
     @config = YAML.load_file(File.expand_path(File.dirname(__FILE__) + "../../../config/#{config_file}"))
