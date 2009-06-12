@@ -13,7 +13,7 @@ class Monitor
       puts '### use test.yml as default ###'
       config_file = "monitor_config_test.yml"
     end
-    
+
     @report_title = ""
     @report_body = []
     @config = YAML.load_file(File.expand_path(File.dirname(__FILE__) + "../../../config/#{config_file}"))
@@ -24,7 +24,7 @@ class Monitor
     check
     report
   end
-  
+
 protected
   def check
     raise "not implement yet!"

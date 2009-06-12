@@ -25,8 +25,8 @@ class DiskfullMonitor < Monitor
         @report_body << "Disk:'#{disk}' used #{spaces[i]} space. <br>"
       end
     end
-    
+
     @report_body << "<br>( the threshold is #{threshold}% for used space )" if @report_body.size > 0
   end
-  
+
 end

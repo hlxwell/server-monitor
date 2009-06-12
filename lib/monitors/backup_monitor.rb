@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/monitor')
 
 class BackupMonitor < Monitor
-  
+
   def check
     # check config
     return if @monitor_config.nil? or @monitor_config["dir"].nil?
