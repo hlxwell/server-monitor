@@ -14,6 +14,7 @@ class Monitor
       config_file = "monitor_config_test.yml"
     end
 
+    @server_name = server_name ||= "test"
     @report_title = ""
     @report_body = []
     @config = YAML.load_file(File.expand_path(File.dirname(__FILE__) + "../../../config/#{config_file}"))
