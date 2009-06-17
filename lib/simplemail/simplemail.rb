@@ -73,7 +73,7 @@ require 'md5'
 
 class SimpleMail
 
-  DEFAULT_SENDMAIL_COMMAND = RUBY_PLATFORM =~ /solaris/ ? "/opt/csw/sbin/sendmail" : "/usr/sbin/sendmail -t"
+  DEFAULT_SENDMAIL_COMMAND = RUBY_PLATFORM.include?(solaris) ? "/opt/csw/sbin/sendmail" : "/usr/sbin/sendmail -t"
 
   # No support for multiple addresses yet
   attr :to, true
