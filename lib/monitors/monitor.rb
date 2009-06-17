@@ -10,7 +10,7 @@ class Monitor
       config_file = "monitor_config_#{server_name}.yml"
       raise unless FileTest.exist?(File.expand_path(File.dirname(__FILE__) + '../../../config/' + config_file))  # file not exit
     rescue
-      puts '### use test.yml as default ###'
+      SimpleLog.info '### use test.yml as default ###'
       config_file = "monitor_config_test.yml"
     end
 
@@ -43,9 +43,9 @@ protected
       mail.html = @report_body.to_s
       mail.send
 
-      puts "#{self.class.name} report mail sent!"
+      SimpleLog.info "#{self.class.name} report mail sent!"
     else
-      puts "#{self.class.name} everything is ok!"
+      SimpleLog.info "#{self.class.name} everything is ok!"
     end
   end
 end
