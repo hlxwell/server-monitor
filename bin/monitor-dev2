@@ -1,0 +1,28 @@
+#!/opt/ruby-enterprise-1.8.6-20090520/bin/ruby
+
+# require all lib file
+['monitors/diskfull_monitor', 'monitors/backup_monitor', 'simple_log'].each do |file|
+  require File.expand_path(File.dirname(__FILE__) + '/../lib/' + file)
+end
+
+execute_at = Time.now
+SimpleLog.info "------- start at #{execute_at} --------"
+
+server_name  = ARGV[0]
+monitor_name = ARGV[1]
+monitors     = [DiskfullMonitor, BackupMonitor]
+
+# check if user specified the monitor, if not, execute all monitors
+if monitor_name and monitors.collect{|m| m.name}.include?(monitor_name)
+  SimpleLog.info "Execute #{monitor_name}!"
+  monitors.each do |monitor|
+    monitor.new(server_name).start if monitor.name == monitor_name
+  end
+else
+  SimpleLog.info "# Execute all configured monitor!"
+  monitors.each do |monitor|
+    monitor.new(server_name).start
+  end
+end
+
+SimpleLog.info "------- end at #{execute_at} --------"

@@ -4,8 +4,11 @@ report_mail:
 
 monitors:
   DiskfullMonitor:
-    disks: /dev/disk0s2,/dev/disk0s3
+    disks: /dev/disk0s2, /dev/disk0s3
     threshold: 5
+    onduty_time_start: 9
+    onduty_time_end: 18
+    offduty_threshold: 98
 
   BackupMonitor:
     dir: /Users/hlxwell

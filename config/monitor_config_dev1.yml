@@ -6,3 +6,6 @@ monitors:
   DiskfullMonitor:
     disks: /dev/mapper/VolGroup00-LogVol00
     threshold: 85
+    onduty_time_start: 9
+    onduty_time_end: 18
+    offduty_threshold: 98

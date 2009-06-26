@@ -6,7 +6,7 @@ class DiskfullMonitor < Monitor
     return if @monitor_config.nil? or @monitor_config["disks"].nil? or @monitor_config["threshold"].nil?
 
     # load configs
-    threshold = @monitor_config["threshold"]
+    threshold = offduty_time? ? @monitor_config["offduty_threshold"] : @monitor_config["threshold"]
     disks_to_be_checked = @monitor_config["disks"]
 
     # get disk space info

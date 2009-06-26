@@ -1,5 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../simplemail/simplemail')
 require 'yaml'
+require 'time'
+require 'pp'
 
 class Monitor
 
@@ -31,6 +33,16 @@ protected
     raise "not implement yet!"
   end
 
+  def offduty_time?
+    if @monitor_config['onduty_time_start'] and @monitor_config['onduty_time_end']
+      return !(@monitor_config['onduty_time_start'] < Time.now.hour \
+                and @monitor_config['onduty_time_end'] > Time.now.hour)
+    end
+  end
+  
+  ###################################
+  # send report mail.
+  ###################################
   def report
     raise "Please config report mail address!" if @config["report_mail"]["mail_to"].nil? or @config["report_mail"]["mail_from"].nil?
 
