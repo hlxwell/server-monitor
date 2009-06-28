@@ -3,10 +3,10 @@ require File.expand_path(File.dirname(__FILE__) + '/monitor')
 class DiskfullMonitor < Monitor
 
   def check
-    return if @monitor_config.nil? or @monitor_config["disks"].nil? or @monitor_config["threshold"].nil?
+    raise "not config for diskfull monitor yet!" if @monitor_config.nil? or @monitor_config["disks"].nil? or @monitor_config["threshold"].nil?
 
     # load configs
-    threshold = offduty_time? ? @monitor_config["offduty_threshold"] : @monitor_config["threshold"]
+    threshold = get_threshold
     disks_to_be_checked = @monitor_config["disks"]
 
     # get disk space info
@@ -27,6 +27,13 @@ class DiskfullMonitor < Monitor
     end
 
     @report_body << "<br>( the threshold is #{threshold}% for used space )" if @report_body.size > 0
+  rescue Exception > e
+    SimpleLog.info "!!!!!!!!!!!! #{e.to_s}"
   end
-
+  
+  protected
+  
+  def get_threshold
+    offduty_time? ? @monitor_config["offduty_threshold"] : @monitor_config["threshold"]
+  end
 end

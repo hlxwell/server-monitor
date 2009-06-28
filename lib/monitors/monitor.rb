@@ -4,7 +4,9 @@ require 'time'
 require 'pp'
 
 class Monitor
-
+  #
+  # initializer of Monitor
+  # you have to pass the server_name in, monitor will go to find the config/monitor_config_[server_name].yml
   def initialize(server_name)
     # find file at config dir, if can't find it, use the "monitor_config_test.yml"
     begin
@@ -23,6 +25,8 @@ class Monitor
     @monitor_config = @config["monitors"][self.class.name]
   end
 
+  #
+  # start to monitor, if get something to report, the report method will send email.
   def start
     check
     report
@@ -33,16 +37,18 @@ protected
     raise "not implement yet!"
   end
 
+  #
+  # check if it is off duty time
   def offduty_time?
+    return true if [0, 6].include?(Time.now.wday)
     if @monitor_config['onduty_time_start'] and @monitor_config['onduty_time_end']
       return !(@monitor_config['onduty_time_start'] < Time.now.hour \
                 and @monitor_config['onduty_time_end'] > Time.now.hour)
     end
   end
   
-  ###################################
+  #
   # send report mail.
-  ###################################
   def report
     raise "Please config report mail address!" if @config["report_mail"]["mail_to"].nil? or @config["report_mail"]["mail_from"].nil?
 
@@ -54,7 +60,6 @@ protected
       mail.text = @report_body.to_s
       mail.html = @report_body.to_s
       mail.send
-
       SimpleLog.info "#{self.class.name} report mail sent!"
     else
       SimpleLog.info "#{self.class.name} everything is ok!"
