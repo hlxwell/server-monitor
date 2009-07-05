@@ -1,7 +1,7 @@
 #!/opt/ruby-enterprise-1.8.6-20090520/bin/ruby
 
 # require all lib file
-['monitors/diskfull_monitor', 'monitors/backup_monitor', 'simple_log'].each do |file|
+['monitors/diskfull_monitor', 'monitors/backup_monitor', 'simple_log', 'asia_time'].each do |file|
   require File.expand_path(File.dirname(__FILE__) + '/../lib/' + file)
 end
 
