@@ -4,7 +4,7 @@ report_mail:
 
 monitors:
   DiskfullMonitor:
-    disks: /dev/sda1, /dev/sdb, /dev/sdj
+    disks: /dev/sda1,/dev/sdb,/dev/sdj
     threshold: 85
     onduty_time_start: 9
     onduty_time_end: 18
