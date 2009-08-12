@@ -47,6 +47,14 @@ protected
     end
   end
   
+  def tell_me_duty_time_state
+    if offduty_time?
+      "Offduty Time"
+    else
+      "Duty Time"
+    end
+  end
+  
   #
   # send report mail.
   def report
@@ -60,9 +68,9 @@ protected
       mail.text = @report_body.to_s
       mail.html = @report_body.to_s
       mail.send
-      SimpleLog.info "#{self.class.name} report mail sent!"
+      SimpleLog.info "#{tell_me_duty_time_state}: #{self.class.name} report mail sent!"
     else
-      SimpleLog.info "#{self.class.name} everything is ok!"
+      SimpleLog.info "#{tell_me_duty_time_state}: #{self.class.name} everything is ok!"
     end
   end
 end
