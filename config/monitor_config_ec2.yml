@@ -1,0 +1,11 @@
+report_mail:
+  mail_to: dev-team <dev@theplant.jp>, emergency <emergency@theplant.jp>
+  mail_from: ec2-monitor <monitor@theplant.jp>
+
+monitors:
+  DiskfullMonitor:
+    disks: /dev/sda1, /dev/sdb, /dev/sdj
+    threshold: 85
+    onduty_time_start: 9
+    onduty_time_end: 18
+    offduty_threshold: 98
